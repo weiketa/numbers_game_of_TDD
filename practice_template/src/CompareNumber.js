@@ -4,7 +4,7 @@
 function CompareNumber() {
 
 }
-CompareNumber.compare_number=function (answer_number,input_number) {
+CompareNumber.prototype.compare_number=function (answer_number,input_number) {
     var a_count=0,b_count=0;
     for(var i=0;i<answer_number.length;i++){
         if(answer_number[i]==input_number[i]){

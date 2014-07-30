@@ -4,7 +4,7 @@
 function AnswerGenerator() {
 
 }
-AnswerGenerator.create_random_number=function (){
+AnswerGenerator.prototype.create_random_number=function (){
     var random_number='';
     var i=0;
     while(true){
@@ -28,8 +28,9 @@ AnswerGenerator.is_repeat=function (random_number){
 }
 
 AnswerGenerator.is_random_number=function () {
-    var one_random_number=AnswerGenerator.create_random_number();
-    var another_random_number=AnswerGenerator.create_random_number();
+    var answer=new AnswerGenerator();
+    var one_random_number=answer.create_random_number();
+    var another_random_number=answer.create_random_number();
     if(one_random_number!=another_random_number){
         return true;
     }
