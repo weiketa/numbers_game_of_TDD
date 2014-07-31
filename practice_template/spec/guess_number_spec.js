@@ -79,3 +79,45 @@ describe('Guess integration testing', function () {
         expect(guess.guess_number('4321')).toBe('0A4B');
     })
 });
+describe('Game testing (answer:1234)', function () {
+    describe('fail the game', function () {
+        var mock_answer={create_random_number: function () {
+            return '1234'
+        }};
+        var compare=new CompareNumber();
+        var game=new Game(new Guess(mock_answer,compare));
+
+        it('should show "Welcome Please input your number(6):" after game start', function () {
+            expect(game.output_game_start_message()).toBe('Welcome!\nPlease input your number(6):')
+        });
+        it('should show "2A2B Please input your number(5): "after input 1243 ', function () {
+            expect(game.guess('1243')).toBe('2A2B\n Please input your number(5):');
+        });
+        it('should show "1A3B Please input your number(4): "after input 1423 ', function () {
+            expect(game.guess('1423')).toBe('1A3B\n Please input your number(4):');
+        });
+        it('should show "Cannot input duplicate numbers!"after input 1423 ', function () {
+            expect(game.guess('1423')).toBe('Cannot input duplicate numbers!');
+        });
+        it('should show "0A4B Please input your number(3): "after input 4123 ', function () {
+            expect(game.guess('4123')).toBe('0A4B\n Please input your number(3):');
+        });
+        it('should show "0A4B Please input your number(2): "after input 4321 ', function () {
+            expect(game.guess('4321')).toBe('0A4B\n Please input your number(2):');
+        });
+        it('should show "Game Over" when the sixth have not guess the correct number', function () {
+            expect(game.guess('1245')).toBe('Game Over');
+        });
+    });
+    describe('win the game', function () {
+        var mock_answer={create_random_number: function () {
+            return '1234'
+        }};
+        var compare=new CompareNumber();
+        var game=new Game(new Guess(mock_answer,compare));
+        it('should show "Congratulations!" when guess the correct number', function () {
+            expect(game.guess('1234')).toBe('Congratulations!')
+        });
+    })
+
+});
