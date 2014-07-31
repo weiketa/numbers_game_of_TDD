@@ -3,9 +3,36 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-</head>
-<body>
+    <script type="text/javascript" src="src/Guess.js"></script>
+    <script type="text/javascript" src="src/AnswerGenerator.js"></script>
+    <script type="text/javascript" src="src/CompareNumber.js"></script>
+    <script type="text/javascript" src="src/Game.js"></script>
+    <script type="text/javascript">
+        var answer=new AnswerGenerator();
+        var compare=new CompareNumber();
+        var game=new Game(new Guess(answer,compare));
 
-<button></button>
+        function play_game() {
+            document.getElementById('game_start').innerText=game.output_game_start_message();
+            document.getElementById('input_number').focus();
+        }
+
+        document.onkeydown=function show_game_result(e) {
+            var answer=game.game_guess.answer_number;
+            var key= e.which;
+            if(key==13){
+                console.log(answer);
+                var input_number=document.getElementById('input_number').value;
+                var result=game.guess(input_number);
+                document.getElementById('game_start').innerText+='\n'+input_number+'\n'+result;
+            }
+        }
+
+    </script>
+</head>
+<body onload="play_game();">
+猜数字：<input id="input_number" />
+<h4 id="game_start"></h4>
+<div id="game_result"></div>
 </body>
 </html>

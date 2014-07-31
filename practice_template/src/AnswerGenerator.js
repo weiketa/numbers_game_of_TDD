@@ -10,7 +10,7 @@ AnswerGenerator.prototype.create_random_number=function (){
     while(true){
         var random_number=parseInt(Math.random()*(9999-1000)+1000);
         if(!AnswerGenerator.is_repeat(random_number)){
-            return random_number;
+            return random_number.toString();
         }
     }
 }

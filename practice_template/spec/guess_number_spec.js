@@ -40,7 +40,7 @@ describe("guess 1234 number", function() {
 describe('create a 4-bits random number which`s every bit is not repeat',function(){
     var answer=new AnswerGenerator();
     it('the number is number type', function () {
-        var random_number=answer.create_random_number();
+        var random_number=parseInt(answer.create_random_number());
         expect(typeof random_number).toBe('number');
     });
     it('the number is 4-bits number', function () {
@@ -104,6 +104,9 @@ describe('Game testing (answer:1234)', function () {
         });
         it('should show "0A4B Please input your number(2): "after input 4321 ', function () {
             expect(game.guess('4321')).toBe('0A4B\n Please input your number(2):');
+        });
+        it('should show "1A3B Please input your number(1): "after input 2314 ', function () {
+            expect(game.guess('2314')).toBe('1A3B\n Please input your number(1):');
         });
         it('should show "Game Over" when the sixth have not guess the correct number', function () {
             expect(game.guess('1245')).toBe('Game Over');

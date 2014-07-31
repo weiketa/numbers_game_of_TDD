@@ -6,6 +6,7 @@ function CompareNumber() {
 }
 CompareNumber.prototype.compare_number=function (answer_number,input_number) {
     var a_count=0,b_count=0;
+    console.log(answer_number)
     for(var i=0;i<answer_number.length;i++){
         if(answer_number[i]==input_number[i]){
             a_count++;
